@@ -1,0 +1,42 @@
+{
+  "data": {
+    "livechatStatus": {
+      "enabled": false,
+      "hasOnline": false,
+      "groupNameToHasOnline": {}
+    },
+    "chatId": "188819434",
+    "uniqueUserCount": 10000,
+    "channelTypeIsAsync": true
+  },
+  "requestType": "query",
+  "version": 1,
+  "botId": "1000209667-wazzup-1000209667-zDS-20949201152",
+  "accountId": "00kv26L6gl1cNSpFpfbF8i",
+  "channelType": "wazzup",
+  "channelBotId": "1000209667-wazzup-1000209667-zDS-20949201152",
+  "channelUserId": "wazzup-1000209667-wazzup-1000209667-zDS-20949201152-188819434",
+  "questionId": "71b7a908-8aa7-49d9-84c5-72ba814032da",
+  "query": "3",
+  "rawRequest": {
+    "messageId": "6eec3a69-e43c-4fd6-ac03-81f6cf369580",
+    "dateTime": "2025-07-30T07:15:31.000Z",
+    "channelId": "aa22fcc2-b872-414b-a201-87c3538cb5bd",
+    "chatType": "telegram",
+    "chatId": "188819434",
+    "type": "text",
+    "isEcho": false,
+    "contact": {
+      "name": "Aleksandr Zhiltsov",
+      "avatarUri": "https://store.wazzup24.com/758f0951fe448402a3ec0aae8462925d985626c8",
+      "username": "HenryDorsettCase"
+    },
+    "text": "3",
+    "status": "inbound"
+  },
+  "language": "ru",
+  "userFrom": {
+    "id": "188819434",
+    "firstName": "188819434"
+  }
+}

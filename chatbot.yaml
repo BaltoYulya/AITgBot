@@ -1,0 +1,38 @@
+name: zb-cailapub
+
+entryPoint: main.sc
+
+botEngine: v2
+language: ru
+
+tests:
+  include:
+    - test.xml
+
+nlp:
+  intentNoMatchThresholds:
+    phrases: 0.2
+    patterns: 0.2
+
+  lengthLimit:
+    enabled: true
+    symbols: 5000
+    words: -1
+
+injector:
+  auth:
+    bitrix: 6m93qny5oczocmke
+
+  api: 
+    getUserByBitrix: https://b24-vtfotu.bitrix24.ru/rest/1/{token}/crm.lead.list/
+    getUserByWhatsapp: https://b24-vtfotu.bitrix24.ru/rest/1/{token}/crm.duplicate.findbycomm
+    getBitrixThemes: https://b24-vtfotu.bitrix24.ru/rest/1/{token}/crm.lead.userfield.list.json
+    createLead: https://b24-vtfotu.bitrix24.ru/rest/1/{token}/crm.lead.add.json
+    updateLead: https://b24-vtfotu.bitrix24.ru/rest/1/{token}/crm.lead.update.json
+    openAI: 
+
+
+
+
+
+
