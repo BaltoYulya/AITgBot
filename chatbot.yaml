@@ -24,7 +24,7 @@ injector:
     bitrix: 6m93qny5oczocmke
 
   api: 
-    getUserByBitrix: https://b24-vtfotu.bitrix24.ru/rest/1/{token}/crm.lead.list/
+    getUserByTelegram: https://b24-vtfotu.bitrix24.ru/rest/1/{token}/crm.lead.list/
     getUserByWhatsapp: https://b24-vtfotu.bitrix24.ru/rest/1/{token}/crm.duplicate.findbycomm
     getBitrixThemes: https://b24-vtfotu.bitrix24.ru/rest/1/{token}/crm.lead.userfield.list.json
     createLead: https://b24-vtfotu.bitrix24.ru/rest/1/{token}/crm.lead.add.json

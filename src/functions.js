@@ -196,25 +196,54 @@ function extractThemesFromBitrix(result) {
 
 
 
+function getUserByBitrix(id, type) {
+    var param = getRequestParam();
 
+    var headers = {
+        'Cookie': 'qmb=0.',
+        'Content-Type': 'application/x-www-form-urlencoded'
+    };
 
-function gerUserByBitrix(id) {
-    var param = getRequestParam()
-    var url = replaceTokenInUrl(param.url.getUserByBitrix, param.token.bitrix);
+    if (type === 'whatsapp') {
+        // Для WhatsApp используем crm.duplicate.findbycomm
+        var url = replaceTokenInUrl(param.url.getUserByWhatsapp, param.token.bitrix);
+        
+        var response = $http.post(url, {
+            headers: headers,
+            form: {
+                'entity_type': 'LEAD',
+                'type': 'PHONE',
+                'values[0]': id
+            }
+        });
 
-    var response = $http.post(url, {
-        headers: {
-            'Cookie': 'qmb=0',
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        form: {
-            'filter[UF_CRM_1753724408]': id
-        }
-    });
+    } else if (type === 'telegram') {
+        // Для Telegram используем crm.lead.list
+        var url = replaceTokenInUrl(param.url.getUserByTelegram, param.token.bitrix);
+        
+        // Создаем form данные как строку, так как у нас есть дублирующиеся ключи
+        var formData = 'filter[UF_CRM_TELEGRAMID_WZ]=' + encodeURIComponent(id) + 
+                      '&select[]=ID' +
+                      '&select[]=TITLE' +
+                      '&select[]=UF_CRM_TELEGRAMID_WZ' +
+                      '&order[ID]=DESC' +
+                      '&start=0';
+        
+        var response = $http.post(url, {
+            headers: headers,
+            body: formData
+        });
+       
+    }
 
-    if (response.data && response.data.result) return response.data.result;
+    // унифицируем ответ
+
+    if (type === 'whatsapp' && response.data && response.data.result.LEAD && response.data.result.LEAD.length === 1) {
+        return response.data.result.LEAD[0];
+    } else if (type === 'telegram' && response.data && response.data.result.length === 1) {
+        return response.data.result[0].ID;
+    }
     return null;
-
 }
 
 /**
@@ -297,3 +326,14 @@ function parseResponseWithJson(input) {
 
 
 
+
+
+function getSystemPrompt(channel) {
+   
+    // TODO: добавить проверку, иначае openAI не будет получать полный контекст в случае ошибок
+    var themes = getBitrixUserFields(); // Получаем тематику и микротематику, добмалвяем её к промту
+    var themes_text = extractThemesFromBitrix(themes);
+    var channelPrompt = channel === 'telegram' ? prompt.prompt_tg : prompt.prompt_whatsapp;
+    return channelPrompt + "\n\n📋 ДОСТУПНЫЕ ТЕМАТИКИ И МИКРОТЕМАТИКИ:\n" + themes_text + "\n\nСтатусы:\n" + prompt.status;
+
+}

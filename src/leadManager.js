@@ -34,8 +34,8 @@ leadManager.prototype.createLead = function (param) {
                 }
             ],
             SOURCE_ID: param.user_channel, // WHATSAPP1, TELEGRAM1
-            UF_CRM_TELEGRAMID_WZ: param.id_telegram, // ID Telegram
-            UF_CRM_TELEGRAMUSERNAME_WZ: param.userName, // TG USERNAME
+            UF_CRM_1753724408: param.id_telegram, // ID Telegram
+            UF_CRM_1753768818: param.userName, // TG USERNAME
             UF_CRM_1750364723: param.userThemes, // Тематика
             UF_CRM_1750364784: param.userMicroThemes, // Микротематика
             UF_CRM_1753211933: param.userUrgencyLevels // Уровень срочности
